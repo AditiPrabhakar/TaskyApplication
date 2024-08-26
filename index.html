@@ -11,6 +11,39 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
+  <!-- btn on small screen size -->
+  <div class="add__new__btn__mobile__only d-md-none">
+    <button class="btn btn-outline-primary d-flex align-items-center gap-3" type="submit" data-bs-toggle="modal"
+      data-bs-target="#addNewModel">
+      <i class="fa-light fa-plus mr-4"></i> Add new item
+    </button>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="addNewModel" tabindex="-1" aria-labelledby="addNewModelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addNewModelLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image URL</label>
+              <input type="url" class="form-control" id="imageUrl" aria-describedby="imageDesc" placeholder="https://image.com/image.png">
+              <div id="imageDesc" class="form-text">This field is optional.</div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Tasky Application</a>
@@ -24,7 +57,7 @@
               </li>
             </ul>
             
-              <button class="btn btn-outline-primary d-flex align-items-center gap-3" type="submit">
+              <button class="btn btn-outline-primary d-flex align-items-center gap-3" type="submit" data-bs-toggle="modal" data-bs-target="#addNewModel">
                 <i class="fa-light fa-plus mr-4"></i> Add new item
               </button>
             </form>
@@ -35,6 +68,7 @@
       <div class="container">
         <!-- Content here -->
          <section class="mt-5">
+          <!-- Search -->
           <div class="row justify-content-center">
             <div class="col-md-6">
               <div class="input-group flex-nowrap shadow-lg rounded">
@@ -51,8 +85,9 @@
          </section>
         
          <!-- Cards Section here -->
-         <section>
-
+         <section class="mt-3">
+            <div class="row task__contents"></div>
+            <h1>Cards section </h1>
          </section>
       </div>
 
@@ -61,6 +96,6 @@
     <script src="./index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
