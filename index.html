@@ -19,31 +19,78 @@
       <i class="fa-light fa-plus mr-4"></i> Add new item
     </button>
   </div>
-  <!-- Modal -->
+  <!-- Add New Item Modal -->
   <div class="modal fade" id="addNewModel" tabindex="-1" aria-labelledby="addNewModelLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="addNewModelLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="addNewModelLabel">Add New Task</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
-            <div class="mb-3">
+            <!-- image url -->
+            <div class="mb-2">
               <label for="imageUrl" class="form-label">Image URL</label>
               <input type="url" class="form-control" id="imageUrl" aria-describedby="imageDesc" placeholder="https://image.com/image.png">
               <div id="imageDesc" class="form-text">This field is optional.</div>
+            </div>
+
+            <!-- task title -->
+            <div class="mb-2">
+              <label for="taskTitle" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="taskTitle" 
+                placeholder="Write a suitable title for your task here" required>
+            </div>
+
+            <!-- task type -->
+            <div class="mb-2">
+              <label for="tags" class="form-label">Task Type</label>
+              <input type="text" class="form-control" id="tags" placeholder="Task type.." required>
+            </div>
+
+            <!-- task description -->
+            <div class="mb-2">
+              <label for="taskDesc" class="form-label">Task Description</label>
+              <textarea type="text" class="form-control" id="taskDesc" placeholder="Task Description.." required rows="3"></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Open Task Modal -->
+
+  <!-- need to remove later -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Task Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Tasky Application</a>
