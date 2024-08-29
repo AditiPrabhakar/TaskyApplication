@@ -92,8 +92,9 @@ const htmlModalContent = ({id, title, description, url}) =>{
     </div>
     `
 };
-// ~ (browser's local storage, is like a tiny database on your computer that remembers things even after you close the browser.)
+
 //* Converting JSON to string (for local storage)
+// ~ (browser's local storage, is like a tiny database on your computer that remembers things even after you close the browser.)
 //& How this function works ->
 //~  it takes your current list of tasks (state.taskList), converts it into a text format using JSON.stringify(), and then stores it under the name "task" in local storage. So, even if you refresh or close the browser, your tasks won't disappear.
 const updateLocalStorage = () =>
@@ -112,7 +113,7 @@ const updateLocalStorage = () =>
 //& How this function works ->
 //~ It grabs the stored data using localStorage.tasks, and turns it back into a regular JavaScript object using JSON.parse(). This is like "unpacking" the data. If there are tasks saved, it assigns those tasks to the state.taskList, so your app knows about them and can display them.
 const loadInitialData = () => {
-  const localStorageCopy = JSON.parse(localStorage.tasks);
+  const localStorageCopy = JSON.parse(localStorage.task);
 
   if(localStorageCopy)
   {
@@ -127,13 +128,28 @@ const loadInitialData = () => {
 //^ updateLocalStorage: Saves your tasks.
 //^ loadInitialData: Loads your saved tasks when the app starts.
 
-// when we update/edit -> save changes 
+//& when we update/edit -> save changes 
 const handleSubmit = (event) => {
-  const id = `${Date.now()}`;
+  console.log("event triggered");
+  //~ To save things from the screen to js file
+  const id = `${Date.now()}`; //Date.now() changes every second, it's like a id number
   const input = {
     url: document.getElementById("ImageUrl").value,
     title: document.getElementById("taskTitle".value),
     tags: document.getElementById("tags".value),
     taskDesc: document.getElementById("taskDesc".value),
   };
+
+  if(input.title === "" || input.tags === "" || input.description === "")
+  {
+    return alert("Kindly fill all the necessary fields.");
+  }
+
+  // updating key value using spread operator
+  //~ To display all the things on the screen
+  taskContents.innerAdjacentHTML("beforeend", htmlTaskContent(...input, id));
+  state.taskList.push(...input, id);
+
+  // ~ To store things on the browser
+  updateLocalStorage();
 };
