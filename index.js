@@ -56,9 +56,9 @@ const htmlTaskContent = ({id, title, description, type, url}) => `
       <button type="button" class="btn btn-outline-primary mr-1.5" name=${id}>
         <i class="fas fa-pencil-alt" name=${id}></i>
       </button>
-      <button type="button" class="btn btn-outline-danger mr-1.5 ms-1" name=${id}>
-        <i class="fas fa-trash-alt" name=${id} onclick="deleteTask.apply(this, arguments)"></i>
-      </button>
+       <button type='button' class='btn btn-outline-danger mr-1.5 ms-1' name=${id} onclick="deleteTask.apply(this, arguments)">
+          <i class='fas fa-trash-alt name=${id}' ></i>
+        </button>
     </div>
     <div class="card-body">
       ${
@@ -175,4 +175,26 @@ const deleteTask = (e) => {
   if(!e) e = window.event;
   
   const targetId = e.target.getAttribute("name");
+  const type = e.target.tagName;
+ // console.log(type); //~ This outputs the type of the target we click on, (for ex. icon or button)
+
+  const removeTask = state.taskList.filter(({ id }) => id !== targetId);
+
+  state.taskList = removeTask;
+  updateLocalStorage();
+
+  // if(type === "BUTTON")
+  // {
+  //   return e.target.parentNode.parentNode.parentNode.parentNode.removeChild(
+  //     e.target.parentNode.parentNode.parentNode
+  //   );
+  // }
+  // else if(type === "I") //icon, present in button so have to go back 5 steps
+  // {
+  //   return e.target.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(
+  //     e.target.parentNode.parentNode.parentNode.parentNode
+  //   );
+  // }
+  const cardElement = e.target.closest('.col-md-6'); // Find the closest task card
+  cardElement.remove(); // Remove the task card from the DOM
 };
