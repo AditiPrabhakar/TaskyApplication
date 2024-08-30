@@ -1,6 +1,6 @@
 # Tasky Application
 
-A dynamic and user-friendly Task Manager Application designed to help users efficiently manage and track their tasks. Built with modern JavaScript, the app provides an intuitive interface to create, edit, and search tasks effortlessly.
+A dynamic and user-friendly task manager application designed to help users efficiently manage and track their tasks. Built with modern JavaScript, provides an intuitive interface to create, edit, and search tasks effortlessly.
 
 ## Key Features
 
