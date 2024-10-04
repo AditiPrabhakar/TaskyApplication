@@ -1,0 +1,16 @@
+{
+  "name": "taskyapplication",
+  "version": "1.0.0",
+  "description": "serv",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/AditiPrabhakar/TaskyApplication.git)"
+  },
+  "author": "Aditi Prabhakar",
+  "license": "ISC"
+}
