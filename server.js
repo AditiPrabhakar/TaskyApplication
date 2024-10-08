@@ -1,3 +1,5 @@
+//custom scripts in package.json ("aditi": "node server.js" can also run command but we have to write 'npm run aditi' instead of just 'npm start')
+
 const http = require('http'); //third-party file storing of our local browser http to a variable http
 
 const port = 8081;
