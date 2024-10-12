@@ -29,7 +29,7 @@ app.delete("/todos", (req, res) => {
     });
 })
 
-//* For all the methods and * for any root
+//* For all the methods and * for any route
 app.all("*", (req, res) => {
     res.status(501).send();
 });
