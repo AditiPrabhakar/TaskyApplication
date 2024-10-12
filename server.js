@@ -1,66 +1,39 @@
-//* custom scripts in package.json ("aditi": "node server.js" can also run command but we have to write 'npm run aditi' instead of just 'npm start')
+const express = require("express");
 
-const http = require('http'); //^ third-party file storing of our local browser http to a variable http
-const port = 8081; //~ local port run
+const app = express();
+app.use(express.json());
+
+const port = 8081;
 
 const todoList = ["learn", "apply things", "succeed"];
 
-http.createServer((req, res) => {              //& callback func
-    const {method, url} = req
-    // console.log("method" + method, "\nurl" + url);
-    if(url === "/todos"){  //* gets the Root of url
-        if(method === "GET")
-        {
-            res.writeHead(200, { "Content-type": "text/html" });
-            res.write(todoList.toString());
-        }else if(method === "POST"){
-            let body = "";
-            req
-            .on("error", (err) => {
-                console.log(err);
-            })
-            .on('data', (chunk) => {
-                body += chunk;
-                // console.log(chunk);
-            })
-            .on('end', () => {
-                body = JSON.parse(body);
-                //~ Adding an item
-                // let newTodo = todoList;
-                // newTodo.push(body.item); 
-                // console.log("data: ", body);
-
-                //~ Deleting an item
-                // let deleteThisItem = body.item;
-                // for(let i = 0; i < todoList.length; i++)
-                // {
-                //     if(todoList[i] === deleteThisItem)
-                //     {
-                //         (todoList.splice(i,1);)
-                //     }
-                // }
-                
-                //~ Finding an item (somehow is also delete -_-)
-                let deleteThisItem = body.item;
-                todoList.find((elem, index) => {
-                    if(elem === deleteThisItem)
-                    {
-                        todoList.splice(index, 1);
-                    }
-                })
-            })
-        }else{
-            res.writeHead(501);
-        }
-    }else{
-        res.writeHead(404); //* root not found
-    }
-    res.end();
-    // res.writeHead(200, { "Content-type": "text/html" }); //~ 200 is the http code for 'OK'
-    // res.write("<h2>Hey server started!! (nodemon included) :)</h2>")
-    // res.end();
+app.get("/todos", (req, res) => {
+    res.status(200).send(todoList);
 })
 
-    .listen(port, () => {          //& callback func
-        console.log(`NodeJs server started running on port ${port}`); //~ listens to http always on port(8081) is a callback function, for successful conformation 
-    })
+app.post("/todos", (req, res) => {
+    let newTodoItem = req.body.name;
+    todoList.push(newTodoItem);
+    res.status(201).send({message: "Task Added Successfully"});
+})
+
+app.delete("/todos", (req, res) => {
+    const deleteThisItem = req.body.name;
+
+    todoList.find((elem, index) => {
+        if(elem === deleteThisItem)
+        {
+            todoList.splice(index, 1);
+        }
+        res.status(202).send({message: `Deleted item ${req.body.name} Successfully`});
+    });
+})
+
+//* For all the methods and * for any root
+app.all("*", (req, res) => {
+    res.status(501).send();
+});
+
+app.listen(port, () => {
+    console.log(`NodeJs Server Started Running On Port ${port}`);
+})
